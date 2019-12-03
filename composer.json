@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "magento/product-community-edition": "^2.3",
+        "magento/magento2-base": "^2.3",
         "scandipwa/persisted-query": "^1.0"
     },
     "autoload": {
