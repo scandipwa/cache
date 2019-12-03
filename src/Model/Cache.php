@@ -1,6 +1,6 @@
 <?php
 /**
- * ScandiPWA_CatalogGraphQl
+ * ScandiPWA_Cache
  *
  * @category    ScandiPWA
  * @package     ScandiPWA_Cache
@@ -9,7 +9,6 @@
  */
 
 namespace ScandiPWA\Cache\Model;
-
 
 class Cache implements CacheInterface
 {

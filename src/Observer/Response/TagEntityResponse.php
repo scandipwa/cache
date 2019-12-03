@@ -1,6 +1,6 @@
 <?php
 /**
- * ScandiPWA_CatalogGraphQl
+ * ScandiPWA_Cache
  *
  * @category    ScandiPWA
  * @package     ScandiPWA_Cache
@@ -9,7 +9,6 @@
  */
 
 namespace ScandiPWA\Cache\Observer\Response;
-
 
 use Magento\Catalog\Model\ResourceModel\AbstractCollection;
 use Magento\Framework\DataObject\IdentityInterface;

@@ -1,6 +1,6 @@
 <?php
 /**
- * ScandiPWA_CatalogGraphQl
+ * ScandiPWA_Cache
  *
  * @category    ScandiPWA
  * @package     ScandiPWA_Cache
@@ -9,7 +9,6 @@
  */
 
 namespace ScandiPWA\Cache\Observer\Response;
-
 
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\Event\ObserverInterface;
@@ -44,8 +43,7 @@ abstract class CacheableObserver implements ObserverInterface
     public function __construct(
         Cache $cache,
         Http $request
-    )
-    {
+    ) {
         $this->cache = $cache;
         $this->request = $request;
         $this->isGraphQl = $this->request->getPathInfo() === '/graphql';

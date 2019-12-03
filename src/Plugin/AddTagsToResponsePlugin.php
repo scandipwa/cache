@@ -1,6 +1,6 @@
 <?php
 /**
- * ScandiPWA_CatalogGraphQl
+ * ScandiPWA_Cache
  *
  * @category    ScandiPWA
  * @package     ScandiPWA_Cache
@@ -9,7 +9,6 @@
  */
 
 namespace Scandipwa\Cache\Plugin;
-
 
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Response\HttpInterface;
@@ -29,8 +28,7 @@ class AddTagsToResponsePlugin
      */
     public function __construct(
         CacheInterface $cache
-    )
-    {
+    ) {
         $this->cache = $cache;
     }
     
@@ -47,7 +45,7 @@ class AddTagsToResponsePlugin
             return $response;
         }
         
-        if ($this->cache->identitiesExist()){
+        if ($this->cache->identitiesExist()) {
             $tagHeaderString = implode(',', $this->cache->getIdentities());
             $response->setHeader('X-Magento-Tags', $tagHeaderString);
         }
