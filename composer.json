@@ -23,7 +23,7 @@
     ],
     "require": {
         "magento/magento2-base": "^2.3",
-        "scandipwa/persisted-query": "^1.0"
+        "scandipwa/persisted-query": "^2.0"
     },
     "autoload": {
         "files": [
