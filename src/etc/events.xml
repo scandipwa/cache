@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * ScandiPWA_PersistedQuery
+ *
+ * @category    ScandiPWA
+ * @package     ScandiPWA_PersistedQuery
+ * @author      Ilja Lapkovskis <ilja@scandiweb.com | info@scandiweb.com>
+ * @copyright   Copyright (c) 2019 Scandiweb, Ltd (https://scandiweb.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="magento_catalog_api_data_categoryinterface_load_after">
+        <observer name="pq_cc_category" instance="ScandiPWA\Cache\Observer\Response\TagEntityResponse"/>
+    </event>
+    <event name="magento_cms_api_data_blockinterface_load_after">
+        <observer name="pq_cc_block" instance="ScandiPWA\Cache\Observer\Response\TagEntityResponse"/>
+    </event>
+    <event name="magento_cms_api_data_pageinterface_load_after">
+        <observer name="pq_cc_block" instance="ScandiPWA\Cache\Observer\Response\TagEntityResponse"/>
+    </event>
+    <event name="catalog_product_collection_load_after">
+        <observer name="pq_cc_product" instance="ScandiPWA\Cache\Observer\Response\TagEntityResponse"/>
+    </event>
+    <event name="magento_cms_api_data_pageinterface_save_after">
+        <observer name="pq_cc_block" instance="ScandiPWA\Cache\Observer\FlushVarnishObserver"/>
+    </event>
+</config>
