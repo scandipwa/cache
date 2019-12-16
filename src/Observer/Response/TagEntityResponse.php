@@ -30,8 +30,7 @@ class TagEntityResponse extends CacheableObserver
         if (!$this->isGraphQl || !$this->isCacheable) {
             return;
         }
-        
-        $entity = $observer->getEntity();
+        $entity = $observer->getEntity() ?? $observer->getDataByKey('object');
         if ($entity === null) {
             $data = $observer->getData();
             if (array_key_exists('collection', $data)) {
