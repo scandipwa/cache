@@ -25,4 +25,16 @@
     <event name="magento_cms_api_data_pageinterface_save_after">
         <observer name="pq_cc_block" instance="ScandiPWA\Cache\Observer\FlushVarnishObserver"/>
     </event>
+    <event name="scandipwa_menuorganizer_menu_load_after">
+        <observer name="pq_cc_menu" instance="ScandiPWA\Cache\Observer\Response\TagEntityResponse"/>
+    </event>
+    <event name="scandipwa_menuorganizer_menu_save_after">
+        <observer name="pq_cc_menu" instance="ScandiPWA\Cache\Observer\FlushVarnishObserver"/>
+    </event>
+    <event name="scandipwa_menuorganizer_item_collection_load_after">
+        <observer name="pq_cc_menu_item" instance="ScandiPWA\Cache\Observer\Response\TagEntityResponse"/>
+    </event>
+    <event name="scandipwa_menuorganizer_item_save_after">
+        <observer name="pq_cc_menu_item" instance="ScandiPWA\Cache\Observer\FlushVarnishObserver"/>
+    </event>
 </config>

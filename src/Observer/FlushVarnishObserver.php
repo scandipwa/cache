@@ -35,7 +35,8 @@ class FlushVarnishObserver implements ObserverInterface
      */
     public function execute(Observer $observer)
     {
-        $identities= $observer->getEntity()->getIdentities();
+        $entity = $observer->getEntity() ?? $observer->getDataByKey('object');
+        $identities = $entity->getIdentities();
         $this->purgeCache->sendPurgeRequest(implode(',', $identities));
     }
 }
