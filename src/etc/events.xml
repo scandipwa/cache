@@ -13,6 +13,9 @@
     <event name="magento_catalog_api_data_categoryinterface_load_after">
         <observer name="pq_cc_category" instance="ScandiPWA\Cache\Observer\Response\TagEntityResponse"/>
     </event>
+    <event name="catalog_category_collection_load_after">
+        <observer name="pq_cc_category" instance="ScandiPWA\Cache\Observer\Response\TagEntityResponse"/>
+    </event>
     <event name="magento_cms_api_data_blockinterface_load_after">
         <observer name="pq_cc_block" instance="ScandiPWA\Cache\Observer\Response\TagEntityResponse"/>
     </event>

@@ -30,21 +30,26 @@ class TagEntityResponse extends CacheableObserver
         if (!$this->isGraphQl || !$this->isCacheable) {
             return;
         }
+
         $entity = $observer->getEntity() ?? $observer->getDataByKey('object');
+
         if ($entity === null) {
             $data = $observer->getData();
-            if (array_key_exists('collection', $data)) {
-                
+
+            $collectionKey = current(preg_grep('/collection/', array_keys($data)));
+
+            if ($collectionKey) {
                 /** @var AbstractCollection $collection */
-                $collection = $data['collection'];
+                $collection = $data[$collectionKey];
                 foreach ($collection->getItems() as $entity) {
                     $this->addEntityTags($entity);
                 }
             }
         }
+
         $this->addEntityTags($entity);
     }
-    
+
     protected function addEntityTags($entity)
     {
         if ($entity instanceof IdentityInterface) {
