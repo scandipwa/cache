@@ -1,12 +1,18 @@
 <?xml version="1.0"?>
 <!--
- * @category Scandiweb
- * @package ScandiPWA_Cache
- * @author Ilja Lapkovskis <info@scandiweb.com / ilja@scandiweb.com>
- * @copyright Copyright (c) 2019 Scandiweb, Ltd (http://scandiweb.com)
- * @license Apache-2.0
--->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Module/etc/module.xsd">
-    <module name="ScandiPWA_Cache" setup_version="0.1.0" >
+/**
+ * ScandiPWA - Progressive Web App for Magento
+ *
+ * Copyright © Scandiweb, Inc. All rights reserved.
+ * See LICENSE for license details.
+ *
+ * @license OSL-3.0 (Open Software License ("OSL") v. 3.0)
+ * @link https://github.com/scandipwa/quote-graphql
+ */
+--><config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Module/etc/module.xsd">
+    <module name="ScandiPWA_Cache">
+        <sequence>
+            <module name="Magento_GraphQl"/>
+        </sequence>
     </module>
 </config>

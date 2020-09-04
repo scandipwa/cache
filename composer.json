@@ -1,29 +1,15 @@
 {
     "name": "scandipwa/cache",
-    "type": "magento2-theme",
     "description": "ScandiPWA bootstrap module",
-    "keywords": [
-        "magento2",
-        "theme",
-        "installer",
-        "scandipwa",
-        "pwa"
-    ],
+    "type": "magento2-theme",
     "license": [
-        "proprietary"
-    ],
-    "support": {
-        "email": "info@scandiweb.com"
-    },
-    "authors": [
-        {
-            "name": "Ilja Lapkovskis",
-            "email": "ilja@scandiweb.com"
-        }
+        "OSL-3.0"
     ],
     "require": {
-        "magento/magento2-base": "^2.3",
-        "scandipwa/persisted-query": "^2.0"
+        "magento/module-graph-ql": "^100.3",
+        "magento/module-catalog": "*",
+        "magento/framework": "*",
+        "scandipwa/persisted-query": "^2"
     },
     "autoload": {
         "files": [
