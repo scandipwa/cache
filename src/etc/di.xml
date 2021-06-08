@@ -8,12 +8,16 @@
  *
  * @license OSL-3.0 (Open Software License ("OSL") v. 3.0)
  */
---><config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\GraphQl\Controller\GraphQl">
         <plugin name="scandipwa_persisted_cache" type="ScandiPWA\Cache\Plugin\AddTagsToResponsePlugin"/>
     </type>
     <type name="ScandiPWA\GraphQl\Controller\GraphQl">
         <plugin name="scandipwa_persisted_cache" type="ScandiPWA\Cache\Plugin\AddTagsToResponsePlugin"/>
+    </type>
+    <type name="Magento\GraphQl\Controller\GraphQl">
+        <plugin name="scandipwa_404_return" type="ScandiPWA\Cache\Plugin\Add404CodeToEmptyResponsePlugin"/>
     </type>
     <preference for="ScandiPWA\Cache\Model\CacheInterface" type="ScandiPWA\Cache\Model\Cache" />
 </config>
