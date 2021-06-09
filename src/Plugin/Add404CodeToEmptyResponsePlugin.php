@@ -14,6 +14,7 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Response\HttpInterface;
 use Magento\Framework\Interception\InterceptorInterface;
 use Magento\Framework\Serialize\Serializer\Json;
+use Magento\TestFramework\Inspection\Exception;
 
 class Add404CodeToEmptyResponsePlugin
 {
@@ -45,6 +46,10 @@ class Add404CodeToEmptyResponsePlugin
         }
 
         $responseContent = $this->json->unserialize($response->getBody());
+
+        if(!key_exists('data', $responseContent)) {
+            return $response;
+        }
 
         /*
          * In case if response returns object with empty data
