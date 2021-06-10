@@ -53,13 +53,15 @@ class Add404CodeToEmptyResponsePlugin
 
         /*
          * In case if response returns object with empty data
-         * set 404 code to response witch will prevent it from caching
+         * set 404 code and adjust cache-control header
+         * to response which will prevent it from caching
          */
         if (
             empty(current($responseContent['data']))
             || empty(current(current($responseContent['data'])))
         ) {
-            return $response->setStatusHeader(404);
+            $response->setStatusHeader(404);
+            $response->setHeader('cache-control', 'public, must-revalidate, proxy-revalidate, max-age=0', true);
         }
 
         return $response;
