@@ -14,7 +14,6 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Response\HttpInterface;
 use Magento\Framework\Interception\InterceptorInterface;
 use Magento\Framework\Serialize\Serializer\Json;
-use Magento\TestFramework\Inspection\Exception;
 
 class Add404CodeToEmptyResponsePlugin
 {
