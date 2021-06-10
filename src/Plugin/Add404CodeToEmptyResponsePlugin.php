@@ -14,7 +14,6 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Response\HttpInterface;
 use Magento\Framework\Interception\InterceptorInterface;
 use Magento\Framework\Serialize\Serializer\Json;
-use Magento\TestFramework\Inspection\Exception;
 
 class Add404CodeToEmptyResponsePlugin
 {
@@ -47,20 +46,36 @@ class Add404CodeToEmptyResponsePlugin
 
         $responseContent = $this->json->unserialize($response->getBody());
 
+        if(key_exists('errors', $responseContent)) {
+            return $this->set404Code($response);
+        }
+
         if(!key_exists('data', $responseContent)) {
             return $response;
         }
 
         /*
          * In case if response returns object with empty data
-         * set 404 code to response witch will prevent it from caching
+         * set 404 code and adjust cache-control header
+         * to response which will prevent it from caching
          */
         if (
             empty(current($responseContent['data']))
             || empty(current(current($responseContent['data'])))
         ) {
-            return $response->setStatusHeader(404);
+            return $this->set404Code($response);
         }
+
+        return $response;
+    }
+
+    /**
+     * Set 404 code and adjust cache-control header
+     * @param HttpInterface $response
+     */
+    public function set404Code($response) {
+        $response->setStatusHeader(404);
+        $response->setHeader('cache-control', 'public, must-revalidate, proxy-revalidate, max-age=0', true);
 
         return $response;
     }
