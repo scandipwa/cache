@@ -47,6 +47,10 @@ class Add404CodeToEmptyResponsePlugin
 
         $responseContent = $this->json->unserialize($response->getBody());
 
+        if(key_exists('errors', $responseContent)) {
+            return $this->set404Code($response);
+        }
+
         if(!key_exists('data', $responseContent)) {
             return $response;
         }
@@ -60,9 +64,19 @@ class Add404CodeToEmptyResponsePlugin
             empty(current($responseContent['data']))
             || empty(current(current($responseContent['data'])))
         ) {
-            $response->setStatusHeader(404);
-            $response->setHeader('cache-control', 'public, must-revalidate, proxy-revalidate, max-age=0', true);
+            return $this->set404Code($response);
         }
+
+        return $response;
+    }
+
+    /**
+     * Set 404 code and adjust cache-control header
+     * @param HttpInterface $response
+     */
+    public function set404Code($response) {
+        $response->setStatusHeader(404);
+        $response->setHeader('cache-control', 'public, must-revalidate, proxy-revalidate, max-age=0', true);
 
         return $response;
     }
