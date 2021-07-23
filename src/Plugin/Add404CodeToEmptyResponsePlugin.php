@@ -54,14 +54,18 @@ class Add404CodeToEmptyResponsePlugin
             return $response;
         }
 
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $logger = $objectManager->create('\Psr\Log\LoggerInterface');
+        $logger->info("123", (array)$this->validateResponseContent(current($responseContent['data'])));
+
         /*
          * In case if response returns object with empty data
          * set 404 code and adjust cache-control header
          * to response which will prevent it from caching
          */
         if (
-            empty(current($responseContent['data']))
-            || empty(current(current($responseContent['data'])))
+            $this->validateResponseContent(current($responseContent['data']))
+            || $this->validateResponseContent(current(current($responseContent['data'])))
         ) {
             return $this->set404Code($response);
         }
@@ -78,6 +82,19 @@ class Add404CodeToEmptyResponsePlugin
         $response->setHeader('cache-control', 'public, must-revalidate, proxy-revalidate, max-age=0', true);
 
         return $response;
+    }
+
+    /**
+     * Check response content is it is null or array length is 0
+     * @param $responeContent
+     * @return bool|int|void
+     */
+    public function validateResponseContent($responseContent) {
+        if (is_array($responseContent)) {
+            return !count($responseContent);
+        }
+
+        return is_null($responseContent);
     }
 }
 
