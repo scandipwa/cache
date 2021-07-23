@@ -54,10 +54,6 @@ class Add404CodeToEmptyResponsePlugin
             return $response;
         }
 
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $logger = $objectManager->create('\Psr\Log\LoggerInterface');
-        $logger->info("123", (array)$this->validateResponseContent(current($responseContent['data'])));
-
         /*
          * In case if response returns object with empty data
          * set 404 code and adjust cache-control header
