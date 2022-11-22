@@ -59,10 +59,7 @@ class Add404CodeToEmptyResponsePlugin
          * set 404 code and adjust cache-control header
          * to response which will prevent it from caching
          */
-        if (
-            $this->validateResponseContent(current($responseContent['data']))
-            || $this->validateResponseContent(current(current($responseContent['data'])))
-        ) {
+        if ($this->validateResponseContent(current($responseContent['data']))) {
             return $this->set404Code($response);
         }
 
